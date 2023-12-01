@@ -50,14 +50,15 @@ struct ContentView: View {
                     
                     ForEach(0..<3) { number in
                         Button {
-                            withAnimation(.spring(duration: 1 , bounce: 0.5)) {
+                            withAnimation(.linear(duration: 0.5)) {
                                 flagTapped(number)
-                                     }
+                                    animationAmount += 360
+                            }
                            
                             
                         } label: {
                             FlagImage(countryName: countries[number])
-                                .rotation3DEffect(.degrees( selectedIndex == number ?  360.0 : 0.0), axis: (x: 0, y: 1, z: 0))
+                                .rotation3DEffect(.degrees( selectedIndex == number ?  animationAmount : 0.0), axis: (x: 0, y: 1, z: 0))
                                  .opacity(selectedIndex != nil && selectedIndex != number ? 0.25 : 1.0)
                                  .scaleEffect(selectedIndex != nil && selectedIndex != number ? 0.9 : 1)
                         }

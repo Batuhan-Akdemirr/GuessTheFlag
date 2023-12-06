@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-   @State private  var countries = ["Estonia", "France" , "Germany" , "Ireland" , "Italy" , "Nigeria" , "Poland", "Spain" , "UK" , "Ukraine" , "US", "Turkiye", "Netherlands", "Switzerland" , "Russia", "Sweden", "Portugal", "Norway", "India", "Albenia", "Japan" , "China", "Canada", "Argentina", "Australia" , "South Korea" , "Brasil"].shuffled()
+   @State private  var countries = ["Estonia", "France" , "Germany" , "Ireland" , "Italy" , "Nigeria" , "Poland", "Spain" , "UK" , "Ukraine" , "US", "Turkiye", "Netherlands", "Switzerland" , "Russia", "Sweden", "Portugal", "Norway", "India", "Albenia", "Japan" , "China", "Canada", "Argentina", "Australia" , "South Korea" , "Brasil", "South Africa", "Morocco" , "Chile", "Tanzania"].shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var showingScore = false
@@ -39,15 +39,9 @@ struct ContentView: View {
                     .foregroundStyle(.white)
                 
                 VStack(spacing:15) {
-                    VStack {
-                        Text("Tap the flag of")
-                            .foregroundStyle(.white)
-                            .font(.subheadline.weight(.heavy) )
-                        
-                        Text(countries[correctAnswer])
-                            .font(.largeTitle.weight(.semibold))
-                    }
                     
+                    CountryNameView(countryName: countries[correctAnswer])
+                 
                     ForEach(0..<3) { number in
                         Button {
                             withAnimation(.linear(duration: 0.5)) {

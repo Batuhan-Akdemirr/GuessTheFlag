@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA3FFA192B20B41E00724968 /* CountryNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3FFA182B20B41E00724968 /* CountryNameView.swift */; };
 		AA825DF72B11EE470095ABD7 /* GuessTheFlagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA825DF62B11EE470095ABD7 /* GuessTheFlagApp.swift */; };
 		AA825DF92B11EE470095ABD7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA825DF82B11EE470095ABD7 /* ContentView.swift */; };
 		AA825DFB2B11EE490095ABD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA825DFA2B11EE490095ABD7 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA3FFA182B20B41E00724968 /* CountryNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryNameView.swift; sourceTree = "<group>"; };
 		AA825DF32B11EE470095ABD7 /* GuessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA825DF62B11EE470095ABD7 /* GuessTheFlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheFlagApp.swift; sourceTree = "<group>"; };
 		AA825DF82B11EE470095ABD7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				AAF60F8E2B1A3D7C00D86B5E /* FlagImage.swift */,
 				AA825DFA2B11EE490095ABD7 /* Assets.xcassets */,
 				AA825DFC2B11EE490095ABD7 /* Preview Content */,
+				AA3FFA182B20B41E00724968 /* CountryNameView.swift */,
 			);
 			path = GuessTheFlag;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA3FFA192B20B41E00724968 /* CountryNameView.swift in Sources */,
 				AA825DF92B11EE470095ABD7 /* ContentView.swift in Sources */,
 				AAF60F8F2B1A3D7C00D86B5E /* FlagImage.swift in Sources */,
 				AA825DF72B11EE470095ABD7 /* GuessTheFlagApp.swift in Sources */,

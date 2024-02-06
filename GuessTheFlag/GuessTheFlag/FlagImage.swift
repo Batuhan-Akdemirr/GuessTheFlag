@@ -19,6 +19,6 @@ struct FlagImage : View {
 
 
 
-/*#Preview {
-    FlagImage()
-} */
+#Preview {
+    FlagImage(countryName: "Turkiye")
+}

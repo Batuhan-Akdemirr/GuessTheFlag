@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-   @State private  var countries = ["Estonia", "France" , "Germany" , "Ireland" , "Italy" , "Nigeria" , "Poland", "Spain" , "UK" , "Ukraine" , "US", "Turkiye", "Netherlands", "Switzerland" , "Russia", "Sweden", "Portugal", "Norway", "India", "Albenia", "Japan" , "China", "Canada", "Argentina", "Australia" , "South Korea" , "Brasil", "South Africa", "Morocco" , "Chile", "Tanzania"].shuffled()
+   @State private  var countries = ["Estonia", "France" , "Germany" , "Ireland" , "Italy" , "Nigeria" , "Poland", "Spain" , "UK" , "Ukraine" , "US", "Turkiye", "Netherlands", "Switzerland" , "Russia", "Sweden", "Portugal", "Norway", "India", "Albenia", "Japan" , "China", "Canada", "Argentina", "Australia" , "South Korea" , "Brasil", "South Africa", "Morocco" , "Chile", "Tanzania","Azerbaijan","Georgia","Iran","Ghana","Thailand","Peru","New Zealand","Mexico","Egypt","Finland","Saudi Arabia","Columbia","Vietnam","Scotland"].shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var showingScore = false
@@ -20,6 +20,8 @@ struct ContentView: View {
     @State private var selectedIndex : Int?
     @State private var animationAmount = 1.0
     @State private var isOpacity  = false
+    
+    let maxQuestion = 15
     
     
     var body: some View {
@@ -77,18 +79,18 @@ struct ContentView: View {
         }
         .alert(scoreTitle, isPresented: $showingScore) {
             
-            answerCount != 15 ? Button("Continue", action: askQuestion) : Button("Restart", action: restartTheGame)
+            answerCount != maxQuestion ? Button("Continue", action: askQuestion) : Button("Restart", action: restartTheGame)
           
         } message: {
             
-            answerCount != 15  ? Text("Your score is \(score)")  :  Text("The games's over. You gave \(score) correct and \(15-score) incorrect answers. Your score is \(score)")
+            answerCount != maxQuestion  ? Text("Your score is \(score)")  :  Text("The games's over. You gave \(score) correct and \(maxQuestion-score) incorrect answers. Your score is \(score)")
         }
         
     }
     
     func flagTapped(_ number: Int) {
          
-         if answerCount != 15 {
+         if answerCount != maxQuestion {
              if number == correctAnswer {
                  scoreTitle = "Correct"
                  score += 1
@@ -122,6 +124,6 @@ struct ContentView: View {
     }
 }
 
-/*#Preview {
+#Preview {
     ContentView()
-}*/
+}

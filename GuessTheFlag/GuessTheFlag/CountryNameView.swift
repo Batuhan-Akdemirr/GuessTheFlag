@@ -23,3 +23,6 @@ struct CountryNameView: View {
 }
 
 
+#Preview {
+    CountryNameView(countryName: "Turkiye")
+}

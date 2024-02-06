@@ -10,19 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-   @State private  var countries = ["Estonia", "France" , "Germany" , "Ireland" , "Italy" , "Nigeria" , "Poland", "Spain" , "UK" , "Ukraine" , "US", "Turkiye", "Netherlands", "Switzerland" , "Russia", "Sweden", "Portugal", "Norway", "India", "Albenia", "Japan" , "China", "Canada", "Argentina", "Australia" , "South Korea" , "Brasil", "South Africa", "Morocco" , "Chile", "Tanzania","Azerbaijan","Georgia","Iran","Ghana","Thailand","Peru","New Zealand","Mexico","Egypt","Finland","Saudi Arabia","Columbia","Vietnam","Scotland"].shuffled()
-    
-    @State private var correctAnswer = Int.random(in: 0...2)
-    @State private var showingScore = false
-    @State private var scoreTitle = ""
-    @State private var score = 0
-    @State private var answerCount = 0
-    @State private var selectedIndex : Int?
-    @State private var animationAmount = 1.0
-    @State private var isOpacity  = false
-    
-    let maxQuestion = 15
-    
+    @StateObject var vm = ContentViewModel()
     
     var body: some View {
     
@@ -42,21 +30,21 @@ struct ContentView: View {
                 
                 VStack(spacing:15) {
                     
-                    CountryNameView(countryName: countries[correctAnswer])
+                    CountryNameView(countryName: vm.countries[vm.correctAnswer])
                  
                     ForEach(0..<3) { number in
                         Button {
                             withAnimation(.linear(duration: 0.5)) {
-                                flagTapped(number)
-                                    animationAmount += 360
+                                vm.flagTapped(number)
+                                vm.animationAmount += 360
                             }
                            
                             
                         } label: {
-                            FlagImage(countryName: countries[number])
-                                .rotation3DEffect(.degrees( selectedIndex == number ?  animationAmount : 0.0), axis: (x: 0, y: 1, z: 0))
-                                 .opacity(selectedIndex != nil && selectedIndex != number ? 0.25 : 1.0)
-                                 .scaleEffect(selectedIndex != nil && selectedIndex != number ? 0.9 : 1)
+                            FlagImage(countryName: vm.countries[number])
+                                .rotation3DEffect(.degrees( vm.selectedIndex == number ?  vm.animationAmount : 0.0), axis: (x: 0, y: 1, z: 0))
+                                .opacity(vm.selectedIndex != nil && vm.selectedIndex != number ? 0.25 : 1.0)
+                                .scaleEffect(vm.selectedIndex != nil && vm.selectedIndex != number ? 0.9 : 1)
                         }
                     }
                 }
@@ -69,7 +57,7 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 
-                Text("Score: \(score)")
+                Text("Score: \(vm.score)")
                     .foregroundStyle(.white)
                     .font(.title.bold())
                 
@@ -77,50 +65,15 @@ struct ContentView: View {
             }
             .padding()
         }
-        .alert(scoreTitle, isPresented: $showingScore) {
+        .alert(vm.scoreTitle, isPresented: $vm.showingScore) {
             
-            answerCount != maxQuestion ? Button("Continue", action: askQuestion) : Button("Restart", action: restartTheGame)
+            vm.answerCount != vm.maxQuestion ? Button("Continue", action: vm.askQuestion) : Button("Restart", action: vm.restartTheGame)
           
         } message: {
             
-            answerCount != maxQuestion  ? Text("Your score is \(score)")  :  Text("The games's over. You gave \(score) correct and \(maxQuestion-score) incorrect answers. Your score is \(score)")
+            vm.answerCount != vm.maxQuestion  ? Text("Your score is \(vm.score)")  :  Text("The games's over. You gave \(vm.score) correct and \(vm.maxQuestion-vm.score) incorrect answers. Your score is \(vm.score)")
         }
         
-    }
-    
-    func flagTapped(_ number: Int) {
-         
-         if answerCount != maxQuestion {
-             if number == correctAnswer {
-                 scoreTitle = "Correct"
-                 score += 1
-                 selectedIndex = number
-                 isOpacity = true
-                 
-             } else {
-                 scoreTitle = "Wrong !! That's flag of  \(countries[number])"
-             }
-             
-             answerCount += 1
-             showingScore = true
-         }
-     }
-
-    
-    func askQuestion() {
-        countries.shuffle()
-        correctAnswer = Int.random(in: 0...2)
-        selectedIndex = nil
-        animationAmount = 1.0
-    }
-    
-   func restartTheGame()  {
-       score = 0
-       answerCount = 0
-       countries.shuffle()
-       correctAnswer = Int.random(in: 0...2)
-       isOpacity = false
-       selectedIndex = nil
     }
 }
 
